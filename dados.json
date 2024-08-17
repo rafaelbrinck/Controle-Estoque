@@ -1,0 +1,14 @@
+[
+    {
+        "Nome": "Simples P",
+        "Preco": 15.0,
+        "Medidas": "15x15",
+        "Categoria": "Rede"
+    },
+    {
+        "Nome": "Simples G",
+        "Preco": 30.0,
+        "Medidas": "30x30",
+        "Categoria": "Rede"
+    }
+]
