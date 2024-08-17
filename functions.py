@@ -6,7 +6,7 @@ import json
 # Listas
 
 listaProdutos = []
-
+carrinho = []
 
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -102,6 +102,36 @@ def remover():
         print('Entrada inválida.')
         getche()
 
+def orcamento():
+    clear()
+    total = 0
+    print('-'*40)
+    print('Produtos')
+    for i, produto in enumerate(listaProdutos):
+        print(f'{i} - {produto.getnome()}')
+    print('-'*40)
+
+    op = input('\nProduto para adicionar em orçamento: ')
+    op = int(op)
+    for i, produto in enumerate(listaProdutos):
+        if i == op:
+            carrinho.append(produto)
+    clear()
+    for produto in carrinho:
+        print(f'{produto.getnome()} ---------- {produto.getpreco()}')
+        total = total + produto.getpreco()
+    print(f'\nTotal: R${total}')
+    getche()
+
+    
+
+
+
+
+
+
+
+
 
 # Json
 def exportar():
@@ -111,7 +141,6 @@ def exportar():
     clear()
     print("Dados exportados com sucesso!")
     time.sleep(1)
-
 
 def importar():
     try:

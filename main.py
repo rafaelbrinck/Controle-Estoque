@@ -8,6 +8,7 @@ while True:
     print('1 - Adicionar Produtos')
     print('2 - Mostrar Produtos')
     print('3 - Remover Produtos')
+    print('4 - Orçamento')
     print('9 - Sair')
     print('-'*40)
     op = input('Qual deseja: ').strip()
@@ -18,6 +19,8 @@ while True:
         functions.mostrarCategorias()
     elif op == '3':
         functions.remover()
+    elif op == '4':
+        functions.orcamento()
     elif op == '9':
         functions.exportar()
         break
