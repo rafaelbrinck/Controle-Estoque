@@ -16,26 +16,30 @@ def getche():
     
 
 def adicionar():
-    clear()
-    categoria = input('Categoria (Rede, Toca, Forracao): ').strip()
-    nome = input('Produto: ').strip()
-    preco = input('Preço: ').strip()
-    medidas = input('Medidas: ').strip()
+        clear()
+        categoria = input('Categoria (Rede, Toca, Forracao): ').strip()
+        nome = input('Produto: ').strip()
+        preco = input('Preço: ').strip()
+        medidas = input('Medidas: ').strip()
 
-    if not categoria or not nome or not preco or not medidas:
-        print('Todos os campos devem ser preenchidos. Produto não adicionado!')
-        return
-    try:
-        categoria = categoria.capitalize()
-        preco = float(preco)
-    except ValueError:
-        print("Preço deve ser em número válido.")
-        return
-    produto = classes.Produto(nome, preco, medidas, categoria)
-    listaProdutos.append(produto)
-    clear()
-    print(f'Produto {nome} adicionado com sucesso!\n')
-    getche()
+        if not categoria or not nome or not preco or not medidas:
+            print('Todos os campos devem ser preenchidos. Produto não adicionado!')
+            return
+        try:
+            categoria = categoria.capitalize()
+            preco = float(preco)
+        except ValueError:
+            print("Preço deve ser em número válido.")
+            return
+        produto = classes.Produto(nome, preco, medidas, categoria)
+        listaProdutos.append(produto)
+        clear()
+        print(f'Produto {nome} adicionado com sucesso!\n')
+        clear()
+        saida = input("\n Deseja adicionar outro produto ( s | n )")
+        saida = saida.upper()
+        getche()
+
 
 def mostrarCategorias():
     clear()
@@ -110,12 +114,27 @@ def orcamento():
     for i, produto in enumerate(listaProdutos):
         print(f'{i} - {produto.getnome()}')
     print('-'*40)
-
     op = input('\nProduto para adicionar em orçamento: ')
-    op = int(op)
-    for i, produto in enumerate(listaProdutos):
-        if i == op:
-            carrinho.append(produto)
+    if op.split() == "":
+        clear()
+        print("Nenhum número fornecido. Ação cancelada.")
+        getche()
+        return
+    try:
+
+        op = int(op)
+        if 0 <= op < len(listaProdutos):
+            for i, produto in enumerate(listaProdutos):
+                if i == op:
+                    carrinho.append(produto)
+        else:
+            clear()
+            print('Índice inválido.')
+            getche()
+    except ValueError:
+        clear()
+        print('Entrada inválida.')
+        getche()
     clear()
     for produto in carrinho:
         print(f'{produto.getnome()} ---------- {produto.getpreco()}')
